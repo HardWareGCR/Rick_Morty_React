@@ -1,0 +1,43 @@
+/* src/App.css */
+body {
+  background-image: url('./assets/rick-and-morty-background.jpg.jpeg'); 
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+
+}
+
+.App {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-title {
+  color: #000;
+}
+
+.card-text {
+  color: #333;
+}
+
+.btn {
+  width: 120px;
+  
+}
+
+.input-group .form-control {
+  border-radius: 0;
+}
+
+.input-group .btn {
+  border-radius: 0;
+}
