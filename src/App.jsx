@@ -73,7 +73,7 @@ function App() {
               <p className="card-text"><strong>Location:</strong> {character.location.name}</p>
               <p className="card-text"><strong>Created:</strong> {new Date(character.created).toLocaleDateString()}</p>
               <p className="card-text">
-                Episodes:
+                <strong>Episodes:</strong>
                 <ul>
                   {character.episode.map((ep, index) => (
                     <a href={ep} target="_blank" rel="noopener noreferrer">Ep:{index + 1}</a>
@@ -83,7 +83,7 @@ function App() {
             </div>
           </div>
         )}
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center gap-2">
           <button onClick={handlePrev} className="btn btn-secondary me-2">Previous</button>
           <button onClick={handleNext} className="btn btn-secondary">Next</button>
         </div>
