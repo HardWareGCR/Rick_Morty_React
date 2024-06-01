@@ -50,9 +50,9 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="text-center text-light">
+        <h1 className="text-center text-light">
           <img src={logo} alt="Logo" style={{ height: '100px', marginLeft: '40px', margin: '15px' }} />
-        </div>
+        </h1>
         <form onSubmit={handleSearch} className="mb-4">
           <div className="input-group">
             <input type="number" name="searchId" className="form-control" placeholder="Enter character ID..." />
