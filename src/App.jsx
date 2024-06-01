@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getCharacterById, getEpisode } from './services/api.js';
-import logo from '/Rick_and_Morty.svg';  
+import { getCharacterById } from './services/api.js';
+import logo from '/Rick_and_Morty.svg';
 import './App.css';
 
 function App() {
   const [character, setCharacter] = useState(null);
   const [episode, setEpisode] = useState(null);
   const [id, setId] = useState(1);
-  const [input,setInputid] = useState('');
+  const [input, setInputid] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -17,7 +17,15 @@ function App() {
       setError(null);
       try {
         const data = await getCharacterById(id);
-        setCharacter(data);
+
+        if (data.id != undefined) {
+          setCharacter(data);
+
+        } else {
+          
+        }
+
+
 
       } catch (error) {
         console.error('Erro ao buscar o personagem:', error);
@@ -31,8 +39,8 @@ function App() {
   }, [id]);
 
   const handleSearch = (event) => {
-    event.preventDefault();
-    const searchId = parseInt(event.target.elements.searchId.value.trim(), 10);
+
+    const searchId = parseInt(id);
 
     if (!searchId || searchId < 1 || searchId > 826) {
       alert('Por favor, insira um ID válido entre 1 e 826.');
@@ -53,15 +61,15 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1 className="text-center text-light">
+        <div >
           <img src={logo} alt="Logo" style={{ height: '100px', marginLeft: '40px', margin: '15px' }} />
-        </h1>
-        <form onSubmit={handleSearch} className="mb-4">
+        </div>
+        <div className="mb-4">
           <div className="input-group">
-            <input type="number" name="searchId" className="form-control" placeholder="Enter character ID..." />
-            <button type="submit" className="btn btn-primary">Search</button>
+            <input type="number" name="searchId" value={id} onChange={(element) => setId(element.target.value)} className="form-control" placeholder="Enter character ID..." />
+            <button onClick={handleSearch} type="submit" className="btn btn-primary">Search</button>
           </div>
-        </form>
+        </div>
         {loading && <p className="text-center text-light">Loading...</p>}
         {error && <p className="text-center text-danger">{error}</p>}
         {character && !loading && (
@@ -79,7 +87,7 @@ function App() {
                 <strong>Episodes:</strong>
                 <ul>
                   {character.episode.map((ep) => (
-                   <li><a href='#'>{ep}</a></li>
+                    <li><a href='#'>{ep}</a></li>
                   ))}
                 </ul>
               </p>
