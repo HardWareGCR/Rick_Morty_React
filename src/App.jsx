@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getCharacterById } from './services/api.js';
+import { getCharacterById, getEpisode } from './services/api.js';
 import logo from '/Rick_and_Morty.svg';  
 import './App.css';
 
 function App() {
   const [character, setCharacter] = useState(null);
+  const [episode, setEpisode] = useState(null);
   const [id, setId] = useState(1);
+  const [input,setInputid] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -16,9 +18,10 @@ function App() {
       try {
         const data = await getCharacterById(id);
         setCharacter(data);
+
       } catch (error) {
-        console.error('Error fetching character:', error);
-        setError('Failed to fetch character data.');
+        console.error('Erro ao buscar o personagem:', error);
+        setError('Falha ao obter os dados do personagem.');
       } finally {
         setLoading(false);
       }
@@ -32,7 +35,7 @@ function App() {
     const searchId = parseInt(event.target.elements.searchId.value.trim(), 10);
 
     if (!searchId || searchId < 1 || searchId > 826) {
-      alert('Please enter a valid ID between 1 and 826.');
+      alert('Por favor, insira um ID válido entre 1 e 826.');
       return;
     }
 
@@ -67,16 +70,16 @@ function App() {
             <div className="card-body">
               <h2 className="card-title">{character.name}</h2>
               <p className="card-text"><strong>Status:</strong> {character.status}</p>
-              <p className="card-text"><strong>Species:</strong> {character.species}</p>
-              <p className="card-text"><strong>Gender:</strong> {character.gender}</p>
-              <p className="card-text"><strong>Origin:</strong> {character.origin.name}</p>
-              <p className="card-text"><strong>Location:</strong> {character.location.name}</p>
-              <p className="card-text"><strong>Created:</strong> {new Date(character.created).toLocaleDateString()}</p>
+              <p className="card-text"><strong>Espécie:</strong> {character.species}</p>
+              <p className="card-text"><strong>Gênero:</strong> {character.gender}</p>
+              <p className="card-text"><strong>Origem:</strong> {character.origin.name}</p>
+              <p className="card-text"><strong>Localização:</strong> {character.location.name}</p>
+              <p className="card-text"><strong>Criada:</strong> {new Date(character.created).toLocaleDateString()}</p>
               <p className="card-text">
                 <strong>Episodes:</strong>
                 <ul>
-                  {character.episode.map((ep, index) => (
-                    <a href={ep} target="_blank" rel="noopener noreferrer">Ep:{index + 1}</a>
+                  {character.episode.map((ep) => (
+                   <li><a href='#'>{ep}</a></li>
                   ))}
                 </ul>
               </p>
