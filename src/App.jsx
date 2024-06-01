@@ -5,9 +5,7 @@ import './App.css';
 
 function App() {
   const [character, setCharacter] = useState(null);
-  const [episode, setEpisode] = useState(null);
   const [id, setId] = useState(1);
-  const [input, setInputid] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
