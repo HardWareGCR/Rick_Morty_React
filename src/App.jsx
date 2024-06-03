@@ -76,7 +76,7 @@ function App() {
                 <strong>Episodes:</strong>
                 <ul>
                   {character.episode.map((ep) => (
-                    <li key={ep}><a href='#'>{ep}</a></li>
+                    <li><a href={ep} target="_blank" rel="noopener noreferrer">{ep}</a></li>
                   ))}
                 </ul>
               </p>
