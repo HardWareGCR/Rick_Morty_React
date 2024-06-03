@@ -75,7 +75,7 @@ function App() {
               <p className="card-text">
                 <strong>Episodes:</strong>
                 <ul>
-                  {character.episode.map((ep, index) => (
+                  {character.episode.map((ep) => (
                     <li key={ep}><a href='#'>{ep}</a></li>
                   ))}
                 </ul>
